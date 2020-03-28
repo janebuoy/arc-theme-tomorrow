@@ -7,7 +7,7 @@ $bg_color: if($variant !='dark', #F5F6F7, #383C4A);
 $fg_color: if($variant !='dark', #5c616c, #D3DAE3);
 
 $selected_fg_color: #ffffff;
-$selected_bg_color: #5294e2;
+$selected_bg_color: #53A3A6;
 $selected_borders_color: darken($selected_bg_color, 20%);
 $borders_color: if($variant !='dark', darken($bg_color,9%), darken($bg_color,6%));
 
@@ -18,23 +18,23 @@ $link_visited_color: if($variant !='dark', darken($selected_bg_color,20%),
 
 $selection_mode_bg: if($transparency == 'true', transparentize($selected_bg_color, 0.05), $selected_bg_color);
 $selection_mode_fg: $selected_fg_color;
-$warning_color: #F27835;
-$error_color: #FC4138;
+$warning_color: #f99157;
+$error_color: #cc6666;
 $warning_fg_color: white;
 $error_fg_color: white;
-$success_color: #73d216;
-$destructive_color: #F04A50;
-$suggested_color: #4DADD4;
+$success_color: #99cc99;
+$destructive_color: #f2777a;
+$suggested_color: #ffcc66;
 $destructive_fg_color: white;
 $suggested_fg_color: white;
 
-$drop_target_color: #F08437;
+$drop_target_color: #f99157;
 
 //insensitive state derived colors
 $insensitive_fg_color: if($variant !='dark', transparentize($fg_color, 0.45), transparentize($fg_color, 0.55));
 $insensitive_bg_color: if($variant !='dark', mix($bg_color, $base_color, 40%), lighten($bg_color, 2%));
 
-$header_bg: red;
+$header_bg: #c82829;
 @if $transparency=='true' and ($variant=='light' or $variant=='lighter') { $header_bg: transparentize(#e7e8eb, 0.05); }
 @if $transparency=='false' and ($variant=='light' or $variant=='lighter') { $header_bg: #e7e8eb; }
 @if $transparency=='true' and ($variant=='dark' or $variant=='darker') { $header_bg: transparentize(#2f343f, 0.03); }
