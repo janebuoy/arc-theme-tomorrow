@@ -1,6 +1,6 @@
 AC_INIT(
     [arc-theme],
-    [20171105],
+    [20201013],
     [https://github.com/jnsh/arc-theme/issues],
     [arc-theme],
     [https://github.com/jnsh/arc-theme],
@@ -26,7 +26,6 @@ ARC_ENABLE([UNITY],         [unity],         [Unity],         [disable])
 ARC_ENABLE([XFWM],          [xfwm],          [XFWM],          [disable])
 ARC_ENABLE([TRANSPARENCY],  [transparency],  [transparency],  [disable])
 ARC_ENABLE([PLANK],         [plank],         [Plank theme],   [disable])
-ARC_ENABLE([OPENBOX],       [openbox],       [Openbox],       [disable])
 
 AS_IF([test "x$ENABLE_TRANSPARENCY" != xno], [
     AC_SUBST([themedir], [${datadir}/themes/Arc])
@@ -52,11 +51,12 @@ AS_IF([test "x$ENABLE_GTK2" != xno -o "x$ENABLE_GTK3" != xno -o "x$ENABLE_XFWM" 
     AS_IF([test "x$ac_cv_path_INKSCAPE" = x], [AC_MSG_ERROR([inkscape not found])])
     AS_IF([test "x$ac_cv_path_INKSCAPE" != x],
         [INKSCAPE_VERSMJR=`inkscape --version 2> /dev/null | cut -d' ' -f2 | cut -d'.' -f1`]
-        AM_CONDITIONAL([INKSCAPE_1_0_OR_NEWER], [test "x$INKSCAPE_VERSMJR" = x1])
     )
     AC_PATH_PROG([OPTIPNG], [optipng])
-    AS_IF([test "x$ac_cv_path_OPTIPNG" = x], [AC_MSG_ERROR([optipng not found])])
+    AS_IF([test "x$ac_cv_path_OPTIPNG" = x], [AC_MSG_WARN([optipng not found, PNG assets won't be optimized])])
 ])
+AM_CONDITIONAL([INKSCAPE_1_0_OR_NEWER], [test "x$INKSCAPE_VERSMJR" = x1])
+AM_CONDITIONAL([OPTIPNG], [test ! "x$ac_cv_path_OPTIPNG" = x])
 
 AS_IF([test "x$ENABLE_GTK3" != xno -o "x$ENABLE_CINNAMON" != xno -o "x$ENABLE_GNOME_SHELL" != xno], [
     AC_PATH_PROG([SASSC], [sassc])

@@ -1412,7 +1412,10 @@ StScrollBar {
   background-image: url("common-assets/misc/calendar-today.svg");
 }
 
-.calendar-today.calendar-day-with-events { color: $selected_fg_color; }
+.calendar-today.calendar-day-with-events {
+  color: $selected_fg_color;
+  background-image: url("common-assets/misc/calendar-today-active.svg");
+}
 
 .calendar-other-month-day {
   color: transparentize($fg_color, 0.7);
@@ -1818,7 +1821,7 @@ StScrollBar {
   .top &, .bottom & { padding: 0; }
 
   .placeholder {
-    background-image: url("common-assets/dash/dash-placeholder.svg");
+    background-image: none;
     background-size: contain;
     height: 24px;
   }
@@ -2078,6 +2081,10 @@ StScrollBar {
   > .overview-icon {
     background-color: darken($dark_sidebar_bg, 8%);
     border: 1px solid transparentize(darken($dark_sidebar_bg, 25%), 0.5);
+
+    @if $variant == 'lighter' {
+      color: $dark_sidebar_fg;
+    }
   }
 
   &:hover > .overview-icon, &:focus > .overview-icon {
@@ -2105,6 +2112,12 @@ StScrollBar {
   padding: 5px;
   spacing-rows: 5px;
   spacing-columns: 5px;
+}
+
+@if $variant == 'lighter' {
+  .app-folder-popup-bin .overview-icon {
+    color: $dark_sidebar_fg;
+  }
 }
 
 .page-indicator {

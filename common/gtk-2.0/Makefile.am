@@ -36,11 +36,13 @@ $(dark): $(srcdir)/dark/assets.svg | dark/assets
 
 $(light) $(dark):
 if INKSCAPE_1_0_OR_NEWER
-	$(INKSCAPE) --export-id-only --export-filename="$@" --export-id="$(basename $(notdir $@))" --export-dpi=$(if $(filter $(OPTION_GTK2_HIDPI),true),192,96) "$<" >/dev/null
+	$(INKSCAPE) --export-id-only --export-filename="$@" --export-id="$(basename $(notdir $@))" --export-dpi=96 "$<" >/dev/null
 else !INKSCAPE_1_0_OR_NEWER
-	$(INKSCAPE) --export-id-only --export-png="$@" --export-id="$(basename $(notdir $@))" --export-dpi=$(if $(filter $(OPTION_GTK2_HIDPI),true),192,96) "$<" >/dev/null
+	$(INKSCAPE) --export-id-only --export-png="$@" --export-id="$(basename $(notdir $@))" --export-dpi=96 "$<" >/dev/null
 endif
+if OPTIPNG
 	$(OPTIPNG) -o7 --quiet "$@"
+endif
 
 menubar-toolbar/%-dark.png: dark/assets/%.png | menubar-toolbar
 	cp "$<" "$@"
